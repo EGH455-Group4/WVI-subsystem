@@ -1,0 +1,34 @@
+
+<!-- sample example code 
+
+INSERT INTO egh455g4.sampledata (timestamp, type, value)
+VALUES
+    ('2023-09-01 10:00:00', 'Light', '20'),
+    ('2023-09-02 11:00:00', 'Pressure', '222'),
+    ('2023-09-03 12:00:00', 'Gas', '326'),
+    ('2023-09-04 10:00:00', 'Temperature', '-62'),
+    ('2023-09-06 11:00:00', 'Humidity', '68');
+
+        SELECT DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:%s') AS formatted_timestamp, type, value
+        FROM egh455g4.sampledata;
+
+    DELETE FROM egh455g4.sampledata;
+     -->
+
+INSERT INTO egh455g4.uavspot (timestamp, X, Y,Z)
+VALUES
+    ('2023-09-04 10:00:00', '77', '55','100'),
+    ('2023-09-06 10:00:00', '123', '445','1666');
+
+ DELETE FROM egh455g4.uavspot;
+     -->
+
+
+
+INSERT INTO egh455g4.gaugeread (timestamp,reading)
+VALUES
+    ('2023-09-04 10:00:00', '77'),
+    ('2023-09-06 10:00:00', '123');
+
+DELETE FROM egh455g4.gaugeread;
+     -->

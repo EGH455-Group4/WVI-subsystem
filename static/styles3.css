@@ -1,0 +1,174 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.navbar__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.navbar__menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.navbar__item {
+    text-align: center;
+    border: 2px solid #333;
+    padding: 10px;
+}
+
+.navbar__links {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logo {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 0;
+}
+
+.page-title h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.rectangle {
+    background-color: #ddd;
+    padding: 50px;
+    margin-top: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.rectangle.rec1 {
+    width: 98%;
+    padding: 5px;
+    margin: 10px; 
+}
+
+.rec2 {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 5px 0;
+    height: 450px;
+    align-items: center;
+}
+
+.rectangle__half {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center; 
+    
+}
+
+#pressureStatus {
+    margin-left: 50px;
+}
+
+#targetCaptureLabel {
+    margin-left: 400px; 
+}
+
+#dataplot
+{
+    margin-left: 400px;
+}
+
+.rectangle__label {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.rectangle__box {
+    font-size: 14px;
+    color: #111;
+    display: inline-flex;
+    margin-right: 20px;
+}
+
+.update-time {
+    margin-top: 10px;
+    text-align: right;
+    color: #777;
+    font-size: 12px;
+    margin-right: 20px;
+}
+
+.dataplot-item {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+    padding: 5px 
+}
+
+#targetCaptureLabel {
+    margin-left: 100px; 
+}
+
+.table-wrapper {
+    max-height: 500px; 
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+
+table.data-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.data-table th,
+table.data-table td {
+    border: 1px solid #ccc; 
+    padding: 8px;
+    text-align: left;
+}
+
+
+tbody {
+    background-color: #f2f2f2;
+}
+
+.updateButton{
+    right:-50px;
+}
