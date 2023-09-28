@@ -1,0 +1,5 @@
+CREATE TABLE `target_detection` (
+  `id` bigint(20) NOT NULL,
+  `timestamp` int(11) NOT NULL DEFAULT current_timestamp(),
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`data`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
