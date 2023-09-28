@@ -25,6 +25,9 @@
                 <li class="navbar__item">
                     <a href="/page3.php" class="navbar__links">Log Data</a>
                 </li>
+                <li class="navbar__item">
+                    <a href="/page4.php" class="navbar__links">Control Centre</a>
+                </li>
             </ul>
         </div>
     </nav>
