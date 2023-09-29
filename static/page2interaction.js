@@ -1,31 +1,64 @@
 function updatedata() {
-    fetch('getUAVspot.php')
+    fetch('getTargetDetection.php')
         .then(response => response.json())
         .then(data => {
-            console.log("Fetched data:", data);
+            console.log("Fetched image data:", data.target_detection);
 
-            document.getElementById("xValue").textContent = `x = ${data.X !== "N/A" ? data.X : "0"}`;
-            document.getElementById("yValue").textContent = `y = ${data.Y !== "N/A" ? data.Y : "0"}`;
-            document.getElementById("zValue").textContent = `z = ${data.Z !== "N/A" ? data.Z : "0"}`;
+            targetDetection = data.target_detection;
 
-            const currentTime = new Date();
-            document.getElementById("lastUpdated").textContent = `Last Updated: ${currentTime.toLocaleTimeString()}`;
+            document.getElementById("target-detection-image").src = targetDetection.location;
+
+            detections = targetDetection.detections;
+
+            if (detections.aruco == null) {
+                document.getElementById("arucoIDS").textContent = `Found IDs: None`;
+
+                document.getElementById("xValue").textContent = `x = N/A`;
+                document.getElementById("yValue").textContent = `y = N/A`;
+                document.getElementById("zValue").textContent = `z = N/A`;
+            } else {
+                var ids = [];
+                var totalX = 0;
+                var totalY = 0;
+                var totalZ = 0;
+
+                for (let i = 0; i < detections.aruco.length; i++) {
+                    ids.push(detections.aruco[i].aruco_id);
+
+                    totalX += detections.aruco[i].pose.x_pos
+                    totalY += detections.aruco[i].pose.y_pos
+                    totalZ += detections.aruco[i].pose.z_pos
+                }
+
+                document.getElementById("arucoIDS").textContent = `Found IDs: ${ids.toString()}`;
+
+                document.getElementById("xValue").textContent = `x = ${(totalX/detections.aruco.length).toFixed(2)}`;
+                document.getElementById("yValue").textContent = `y = ${(totalY/detections.aruco.length).toFixed(2)}`;
+                document.getElementById("zValue").textContent = `z = ${(totalZ/detections.aruco.length).toFixed(2)}`;
+            }
+
+            if (detections.gauge == null) {
+                document.getElementById("pressureReading").textContent = `Pressure Reading = None`;
+            } else {
+                document.getElementById("pressureReading").textContent = `Pressure Reading = ${detections.gauge.value} ${detections.gauge.unit}`;
+            }
+
+            if (detections.valve == null) {
+                document.getElementById("valvePositions").textContent = `Valve Positions: None`;
+            } else {
+                var valves = [];
+
+                for (let i = 0; i < detections.valve.length; i++) {
+                    valves.push(detections.valve[i].status);
+                }
+
+                document.getElementById("valvePositions").textContent = `Valve Positions: ${valves.toString()}`;
+            }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
-
-    fetch('getGaugeReading.php')
-        .then(response => response.json())
-        .then(data => {
-            console.log("Fetched pressure reading:", data);
-
-            document.getElementById("pressureReading").textContent = `Pressure Reading = ${data.reading !== "N/A" ? data.reading + " Kpa" : "0 Kpa"}`;
-        })
-        .catch(error => {
-            console.error('Error fetching pressure reading:', error);
-        });
 }
 
 updatedata();
-setInterval(updatedata, 5000);
+setInterval(updatedata, 1000);

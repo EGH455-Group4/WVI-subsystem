@@ -14,6 +14,7 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
+                <span class="bar"></span>
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
@@ -35,41 +36,48 @@
         <h1>Imagery & Target Detection</h1>
     </div>
     <div class="rectangle rec1">
-        <div class="rectangle__half">
-            <div class="rectangle__label">UAV Position</div>
-        </div>
-        <div class="rectangle__half">
-            <div class="rectangle__box" id="xValue">x = </div>
-            <div class="rectangle__box" id="yValue">y = </div>
-            <div class="rectangle__box" id="zValue">z = </div>
-        </div>
-    </div>
-    
-    <div class="rectangle rec1">
-        <div class="rectangle__half">
-            <div class="rectangle__label">Pressure Guage Reading</div>
-        </div>
-        <div class="rectangle__half">
-            <div class="rectangle__box" id="pressureReading">Pressure Reading = Kpa</div>
-        </div>
-    </div>
-    
-    <div class="rectangle rec2">
-        <div class="rectangle__half">
-            <div class="rectangle__label">Detected Image</div>
-            <div class="rectangle__label" id="targetCaptureLabel">Live Video</div>
-            <div class="rectangle__label" id="dataplot">
-                <span class="dataplot-item">Temp</span>
-                <span class="dataplot-item">Humidity</span>
-                <span class="dataplot-item">Light</span>
-                <span class="dataplot-item">Pressure</span>
-                <span class="dataplot-item">Gas</span>
+        <div>
+            <div class="rectangle__half">
+                <div class="rectangle__label">Detected Image</div>
+            </div>
+            <div class="rectangle__half">
+                 <img src="" id="target-detection-image" width="416" height="416"></img>
             </div>
         </div>
-    </div>
+        <div class="rectangle__info">
+            <div class="rectangle__half">
+                <div class="rectangle__label">Image information</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__label">ArUco IDs</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="arucoIDS">Found IDs: </div>
+            </div>
 
-    <div class="update-time">
-        <span id="lastUpdated">Never</span>
+            <div class="rectangle__half">
+                <div class="rectangle__label">UAV Position</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="xValue">x = </div>
+                <div class="rectangle__box" id="yValue">y = </div>
+                <div class="rectangle__box" id="zValue">z = </div>
+            </div>
+
+            <div class="rectangle__half">
+                <div class="rectangle__label">Pressure Gauge Reading</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="pressureReading">Pressure Reading = None</div>
+            </div>
+
+            <div class="rectangle__half">
+                <div class="rectangle__label">Valves</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="valvePositions">Valve Positions: None</div>
+            </div>
+        </div>
     </div>
     <script src="./static/page2interaction.js"></script>
 </body>

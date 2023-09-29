@@ -66,17 +66,12 @@ body {
     background-color: #ddd;
     padding: 50px;
     margin-top: 10px;
-    flex-grow: 1;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
 }
 
 .rectangle.rec1 {
     width: 98%;
-    padding: 5px;
-    margin: 10px; 
+    margin: 10px;
 }
 
 .rec2 {
@@ -98,6 +93,11 @@ body {
     align-items: center; 
     
 }
+
+.rectangle__info{
+    padding-left: 50px;
+}
+
 #pressureStatus {
     margin-left: 50px;
 }

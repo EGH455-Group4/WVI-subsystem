@@ -55,6 +55,15 @@
     <div>
         <button class="navbar__item" onclick="startSampling()">Start sampling process</button>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div>
+        <button class="navbar__item" onclick="clearData()">Clear application data</button>
+    </div>
     <script src="./static/page4interaction.js"></script>
 </body>
 </html>
