@@ -47,7 +47,7 @@
                     <span class="min">-100 °C</span>
                     <span class="max">100 °C</span>
                 </div>
-                <div class="rectangle__box">Current Temperature=<span id="TemperatureValue"></span> °C</div>
+                <div class="rectangle__box"><span id="TemperatureValue"></span> </div>
                 <div class="gauge-bar">
                     <div class="gauge-fill" id="TemperatureGauge"></div>
                 </div>
@@ -57,9 +57,9 @@
                 <div class="rectangle__label">Atmospheric Pressure Gauge</div>
                 <div class="gauge-minmax2st">
                     <span class="min">0 kPa</span>
-                    <span class="max">1000 Kpa</span>
+                    <span class="max" style="margin-right: -10px;">1500 Kpa</span>
                 </div>
-                <div class="rectangle__box">Current Atmosphere Pressure=<span id="PressureValue"></span> KPa </div>
+                <div class="rectangle__box"><span id="PressureValue"></span> </div>
                 <div class="gauge-bar">
                     <div class="gauge-fill" id="PressureGauge"></div>
                 </div>
@@ -73,7 +73,7 @@
                     <span class="min">0 Lux </span>
                     <span class="max">100 Lux</span>
                 </div>
-                <div class="rectangle__box">Current Light Level=<span id="LightValue"></span> Lux</div>
+                <div class="rectangle__box"><span id="LightValue"></span> </div>
                 <div class="gauge-bar">
                     <div class="gauge-fill" id="LightGauge"></div>
                 </div>
@@ -82,10 +82,12 @@
             <div class="rectangle rectangle5">
                 <div class="rectangle__label">Gas Level Sensor</div>
                 <div class="gauge-minmax2st">
-                    <span class="min">0 kg</span>
-                    <span class="max">1000 kg</span>
+                    <span class="min">0 ppm</span>
+                    <span class="max">50 ppm</span>
                 </div>
-                <div class="rectangle__box">Current Gas Level=<span id="GasValue"></span> Kg</div>
+                <div class="rectangle__box"><span id="nh3Value"></span> </div>
+                <div class="rectangle__box"><span id="oxidising_gasesValue"></span> </div>
+                <div class="rectangle__box"><span id="reducing_gasesValue"></span> </div>
                 <div class="gauge-bar">
                     <div class="gauge-fill" id="GasGauge"></div>
                 </div>
@@ -97,7 +99,7 @@
                     <span class="min">0 %</span>
                     <span class="max">100 %</span>
                 </div>
-                <div class="rectangle__box">Current Humidity = <span id="HumidityValue"></span> %</div>
+                <div class="rectangle__box"><span id="HumidityValue"></span></div>
                 <div class="gauge-bar">
                     <div class="gauge-fill" id="HumidityGauge"></div>
                 </div>
@@ -105,22 +107,21 @@
         </div>
     </div>
                     
-                        <label for="dataFilter">Select Data Type:</label>
-                        <select id="dataFilter">
-                            <option value="Temperature">Temperature</option>
-                            <option value="Pressure">Pressure</option>
-                            <option value="Light">Light</option>
-                            <option value="Gas">Gas</option>
-                            <option value="Humidity">Humidity</option>
-                        </select>
-                    
+        <label for="dataFilter" style="display: none;">Select Data Type:</label>
+        <select id="dataFilter" style="display: none;">
+            <option value="Temperature">Temperature</option>
+            <option value="Pressure">Pressure</option>
+            <option value="Light">Light</option>
+            <option value="Gas">Gas</option>
+            <option value="Humidity">Humidity</option>
+        </select>
 
-                    <div id="selectedData">
-                            <span id="selectedDataType">Selected Data Type:</span>
-                            <span id="selectedValue"></span>
-                            <span id="units"></span>
-                            <span id="lastUpdated"></span>
-                    </div>
+        <div id="selectedData" style="display: none;">
+            <span id="selectedDataType">Selected Data Type:</span>
+            <span id="selectedValue"></span>
+            <span id="units"></span>
+            <span id="lastUpdated"></span>
+        </div>
 
     <script src="./static/page1interaction.js"></script>
 </body>
