@@ -2,7 +2,7 @@
 include('db_config.php');
 $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-$sql = "SELECT * FROM target_detection ORDER BY id DESC LIMIT 1";
+$sql = "SELECT * FROM UAV_detection ORDER BY id DESC LIMIT 1";
 
 $result = $mysqli->query($sql);
 

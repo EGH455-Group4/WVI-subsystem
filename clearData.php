@@ -1,7 +1,7 @@
 <?php
 include('db_config.php');
 
-$databaseNames = ['target_detection','sensor_detection'];
+$databaseNames = ['UAV_detection'];
 
 $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 

@@ -9,7 +9,7 @@ if ($data !== null) {
 
    $time = time();
 
-   $sql = "INSERT INTO sensor_detection (timestamp, data) values (?, ?);";
+   $sql = "INSERT INTO UAV_detection (timestamp, data) values (?, ?);";
 
     $mysqli->execute_query($sql, [$time, $jsonData]);
 

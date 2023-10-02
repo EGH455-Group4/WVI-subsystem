@@ -3,7 +3,7 @@ include('db_config.php');
 $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
 try {
-    $query = "SELECT * FROM sensor_detection";
+    $query = "SELECT * FROM UAV_detection";
     $stmt = $mysqli->query($query);
 
     $result = '';
