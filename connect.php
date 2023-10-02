@@ -14,6 +14,8 @@ try {
         $result .= "</td><td>";
         $result .= $row['timestamp'];
         $result .= "</td><td>";
+        $result .= $row['type'];
+        $result .= "</td><td>";
         $result .= $row['data'];
         $result .= "</td></tr>";
     }

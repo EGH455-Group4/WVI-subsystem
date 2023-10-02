@@ -2,11 +2,11 @@
 include('db_config.php');
 $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-$sql = "SELECT * FROM UAV_detection ORDER BY id DESC LIMIT 1";
+$sql = "SELECT * FROM UAV_detection WHERE type = 'Target_Detection' ORDER BY id DESC LIMIT 1";
 
 $result = $mysqli->query($sql);
 
-$detection = $result->fetch_row()[2] ?? [];
+$detection = $result->fetch_row()[3] ?? [];
 
 $result->close();
 
