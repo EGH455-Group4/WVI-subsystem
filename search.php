@@ -6,7 +6,7 @@ $startTimestamp = isset($_GET['startTimestamp']) ? $_GET['startTimestamp'] : '';
 $endTimestamp = isset($_GET['endTimestamp']) ? $_GET['endTimestamp'] : '';
 
 try {
-    $query = "SELECT * FROM sensor_detection WHERE timestamp >= ? AND timestamp <= ?";
+    $query = "SELECT * FROM UAV_detection WHERE timestamp >= ? AND timestamp <= ?";
     $stmt = $mysqli->prepare($query);
 
     $stmt->bind_param("ss", $startTimestamp, $endTimestamp);

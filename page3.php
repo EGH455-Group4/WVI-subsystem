@@ -43,8 +43,8 @@
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th>ip</th>
                                 <th>Timestamp</th>
-                                <th>Type of Data</th>
                                 <th>Data</th>
                             </tr>
                         </thead>
