@@ -1,9 +1,23 @@
 <?php
 include('db_config.php');
+
+$databaseNames = ['target_detection','sensor_detection'];
+
 $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-$sqlTargetDetection = "DELETE FROM target_detection";
+if (!$mysqli) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-$mysqli->execute_query($sqlTargetDetection);
+foreach ($databaseNames as $dbName) {
+    $sql = "DELETE FROM $dbName";
+
+    if ($mysqli->query($sql) === TRUE) {
+        echo "Data deleted from database $dbName successfully.<br>";
+    } else {
+        echo "Error deleting data from database $dbName: " . $mysqli->error . "<br>";
+    }
+}
 
 $mysqli->close();
+?>

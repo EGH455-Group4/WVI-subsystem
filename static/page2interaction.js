@@ -61,4 +61,4 @@ function updatedata() {
 }
 
 updatedata();
-setInterval(updatedata, 1000);
+setInterval(updatedata, 5000);

@@ -1,61 +1,65 @@
-function UpdateSensor() {
-    fetch('getData.php')
+function updateSensorData() {
+    fetch('getSensorDetection.php')
         .then(response => response.json())
         .then(data => {
-            console.log("Fetched data:", data);
+            console.log("Fetched sensor data:", data);
 
-            const dataType = document.getElementById("dataFilter").value;
+            if (data.air_quality.sensors.temperature) {
+                document.getElementById("TemperatureValue").textContent = `Current Temperature = ${data.air_quality.sensors.temperature.value} ${data.air_quality.sensors.temperature.unit} `;
+                updateGauge("TemperatureGauge", data.air_quality.sensors.temperature.value, -100, 100);
 
-            document.getElementById("selectedDataType").textContent = "Selected Data Type: " + dataType;
-
-            if (data.hasOwnProperty(dataType)) {
-                const value = data[dataType];
-
-                document.getElementById("selectedValue").textContent = value !== "N/A" ? value : "0";
-
-                const currentTime = new Date();
-                document.getElementById("lastUpdated").textContent = "Last Updated: " + currentTime.toLocaleTimeString();
-
-                const variables = ["Temperature", "Pressure", "Light", "Gas", "Humidity"];
-                variables.forEach(variable => {
-                    const element = document.getElementById(variable + "Value");
-
-                    if (element) {
-                        const value = data[variable];
-                        element.textContent = value !== "N/A" ? value : "0";
-
-                        if (variable === "Temperature" || variable === "Pressure" || variable === "Light" || variable === "Gas" || variable === "Humidity") {
-                            const gaugeElement = document.getElementById(variable + "Gauge");
-                            if (gaugeElement) {
-                                let min, max;
-                                if (variable === "Temperature") {
-                                    min = -100;
-                                    max = 100;
-                                } else if (variable === "Pressure") {
-                                    min = 0;
-                                    max = 1000;
-                                } else if (variable === "Light") {
-                                    min = 0;
-                                    max = 100;
-                                } else if (variable === "Gas") {
-                                    min = 0;
-                                    max = 1000;
-                                } else if (variable === "Humidity") {
-                                    min = 0;
-                                    max = 100;
-                                }
-                                const percentage = (value - min) / (max - min) * 100;
-                                gaugeElement.style.width = value !== "N/A" ? percentage + "%" : "0%";
-                            }
-                        }
-                    }
-                });
+            } else {
+                document.getElementById("TemperatureValue").textContent = `Current Temperature = N/A`;
             }
+
+            if (data.air_quality.sensors.pressure) {
+                document.getElementById("PressureValue").textContent = `Current Atmosphere Pressure = ${data.air_quality.sensors.pressure.value} ${data.air_quality.sensors.pressure.unit} `;
+                updateGauge("PressureGauge", data.air_quality.sensors.pressure.value, 0, 1500);
+            } else {
+                document.getElementById("PressureValue").textContent = `Current Atmosphere Pressure = N/A`;
+            }
+
+            if (data.air_quality.sensors.light) {
+                document.getElementById("LightValue").textContent = `Current Light Level = ${data.air_quality.sensors.light.value} ${data.air_quality.sensors.light.unit} `;
+                updateGauge("LightGauge", data.air_quality.sensors.light.value, 0, 100);
+            } else {
+                document.getElementById("LightValue").textContent = `Current Light Level = N/A`;
+            }
+
+            if (data.air_quality.sensors.hazardous_gases) {
+                document.getElementById("nh3Value").textContent = `NH3 Level: ${data.air_quality.sensors.hazardous_gases.nh3.value} `;
+                document.getElementById("oxidising_gasesValue").textContent = `Oxidising Gases Level: ${data.air_quality.sensors.hazardous_gases.oxidising_gases.value} `;
+                document.getElementById("reducing_gasesValue").textContent = `Reducing Gases Level: ${data.air_quality.sensors.hazardous_gases.reducing_gases.value} `;
+
+                updateGauge("GasGauge", data.air_quality.sensors.hazardous_gases.nh3.value, 0, 100);
+            } else {
+                document.getElementById("nh3Value").textContent = `NH3 Level: N/A`;
+                document.getElementById("oxidising_gasesValue").textContent = `Oxidising Gases Level: N/A`;
+                document.getElementById("reducing_gasesValue").textContent = `Reducing Gases Level: N/A`;
+            }
+
+            if (data.air_quality.sensors.humidity) {
+                document.getElementById("HumidityValue").textContent = `Current Humidity = ${data.air_quality.sensors.humidity.value} ${data.air_quality.sensors.humidity.unit} `;
+                updateGauge("HumidityGauge", data.air_quality.sensors.humidity.value, 0, 100);
+            } else {
+                document.getElementById("HumidityValue").textContent = `Current Humidity = N/A`;
+            }
+
+            const currentTime = new Date();
+            document.getElementById("lastUpdated").textContent = "Last Updated: " + currentTime.toLocaleTimeString();
         })
         .catch(error => {
-            console.error('Error fetching data:', error);
+            console.error('Error fetching sensor data:', error);
         });
 }
 
-UpdateSensor();
-setInterval(UpdateSensor, 5000);
+function updateGauge(gaugeId, value, min, max) {
+    const percentage = (value - min) / (max - min) * 100;
+    const gaugeElement = document.getElementById(gaugeId);
+    if (gaugeElement) {
+        gaugeElement.style.width = percentage + "%";
+    }
+}
+
+updateSensorData();
+setInterval(updateSensorData, 2000);
