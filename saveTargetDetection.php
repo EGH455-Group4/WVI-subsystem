@@ -5,17 +5,22 @@ $jsonData = file_get_contents('php://input');
 $data = json_decode($jsonData, true);
 
 if ($data !== null) {
-   error_log($data["UAV_detection"]["location"]);
-   $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+    error_log($data["UAV_detection"]["location"]);
+    $mysqli = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-   $time = time();
+    $time = time();
 
-   $sql = "INSERT INTO UAV_detection (timestamp, data) values (?, ?);";
+    $type = "Target_Detection";
 
-    $mysqli->execute_query($sql, [$time, $jsonData]);
+    $sql = "INSERT INTO UAV_detection (timestamp, data, type) VALUES (?, ?, ?);";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("sss", $time, $jsonData, $type);
+    $stmt->execute();
+    $stmt->close();
 
     $mysqli->close();
 } else {
-   http_response_code(400);
-   echo "Invalid JSON data";
+    http_response_code(400);
+    echo "Invalid JSON data";
 }
+?>

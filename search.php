@@ -6,17 +6,19 @@ $startTimestamp = isset($_GET['startTimestamp']) ? $_GET['startTimestamp'] : '';
 $endTimestamp = isset($_GET['endTimestamp']) ? $_GET['endTimestamp'] : '';
 
 try {
-    $query = "SELECT * FROM UAV_detection WHERE timestamp >= ? AND timestamp <= ?";
+    $query = "SELECT id, timestamp, type, data FROM UAV_detection WHERE timestamp >= ? AND timestamp <= ?";
     $stmt = $mysqli->prepare($query);
 
     $stmt->bind_param("ss", $startTimestamp, $endTimestamp);
     
     $stmt->execute();
 
-    $stmt->bind_result($timestamp, $type, $value);
+    $stmt->bind_result($id, $timestamp, $type, $value);
 
     while ($stmt->fetch()) {
         echo "<tr><td>";
+        echo $id;
+        echo "</td><td>";
         echo $timestamp;
         echo "</td><td>";
         echo $type;
