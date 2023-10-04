@@ -1,5 +1,8 @@
-CREATE TABLE `target_detection` (
+CREATE TABLE `UAV_detection` (
   `id` bigint(20) NOT NULL,
   `timestamp` int(11) NOT NULL DEFAULT current_timestamp(),
+  `type` varchar(50),
   `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+# Will need to update id to auto increment through phpmyadmin.
