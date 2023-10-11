@@ -53,10 +53,10 @@
     <div class="rectangle rec1">
         <div>
             <div class="rectangle__half">
-                <div class="rectangle__label">Detected Image</div>
+                <div class="rectangle__label">Live Image</div>
             </div>
             <div class="rectangle__half">
-                 <img src="" id="target-detection-image" width="416" height="416"></img>
+                 <img src="" id="live-image" width="416" height="416"></img>
             </div>
         </div>
         <div class="rectangle__info">
@@ -67,33 +67,78 @@
                 <div class="rectangle__label">ArUco IDs</div>
             </div>
             <div class="rectangle__half">
-                <div class="rectangle__box" id="arucoIDS">Found IDs: </div>
+                <div class="rectangle__box" id="live_arucoIDS">Found IDs: </div>
             </div>
 
             <div class="rectangle__half">
                 <div class="rectangle__label">UAV Position</div>
             </div>
             <div class="rectangle__half">
-                <div class="rectangle__box" id="xValue">x = </div>
-                <div class="rectangle__box" id="yValue">y = </div>
-                <div class="rectangle__box" id="zValue">z = </div>
+                <div class="rectangle__box" id="live_xValue">x = </div>
+                <div class="rectangle__box" id="live_yValue">y = </div>
+                <div class="rectangle__box" id="live_zValue">z = </div>
             </div>
 
             <div class="rectangle__half">
                 <div class="rectangle__label">Pressure Gauge Reading</div>
             </div>
             <div class="rectangle__half">
-                <div class="rectangle__box" id="pressureReading">Pressure Reading = None</div>
+                <div class="rectangle__box" id="live_pressureReading">Pressure Reading = None</div>
             </div>
 
             <div class="rectangle__half">
                 <div class="rectangle__label">Valves</div>
             </div>
             <div class="rectangle__half">
-                <div class="rectangle__box" id="valvePositions">Valve Positions: None</div>
+                <div class="rectangle__box" id="live_valvePositions">Valve Positions: None</div>
             </div>
         </div>
+
+        <div>
+            <div class="rectangle__half">
+                <div class="rectangle__label">Target Image</div>
+            </div>
+            <div class="rectangle__half">
+                 <img src="" id="target-image" width="416" height="416"></img>
+            </div>
+        </div>
+        <div class="rectangle__info">
+            <div class="rectangle__half">
+                <div class="rectangle__label">Image information</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__label">ArUco IDs</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="target_arucoIDS">Found IDs: </div>
+            </div>
+
+            <div class="rectangle__half">
+                <div class="rectangle__label">UAV Position</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="target_xValue">x = </div>
+                <div class="rectangle__box" id="target_yValue">y = </div>
+                <div class="rectangle__box" id="target_zValue">z = </div>
+            </div>
+
+            <div class="rectangle__half">
+                <div class="rectangle__label">Pressure Gauge Reading</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="target_pressureReading">Pressure Reading = None</div>
+            </div>
+
+            <div class="rectangle__half">
+                <div class="rectangle__label">Valves</div>
+            </div>
+            <div class="rectangle__half">
+                <div class="rectangle__box" id="target_valvePositions">Valve Positions: None</div>
+            </div>
+        </div>
+
     </div>
+    
     <script src="./static/page2interaction.js"></script>
 </body>
 </html>

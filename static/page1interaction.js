@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var temperatureChart = createChart('temperatureChart', 'Temperature', 'Temperature (°C)', -100, 100);
-    var pressureChart = createChart('pressureChart', 'Pressure', 'Pressure (kPa)', 0, 1500);
+    var pressureChart = createChart('pressureChart', 'Pressure', 'Pressure (hPa)', 0, 1500);
     var lightChart = createChart('lightChart', 'Light', 'Light (Lux)', 0, 500);
     var gasChart = createGasChart('gasChart', 'Gas Level', 'Gas Level (ppm)', 0, 50);
     var humidityChart = createChart('humidityChart', 'Humidity', 'Humidity (%)', 0, 100);

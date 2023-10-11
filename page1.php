@@ -56,8 +56,8 @@
             <div class="rectangle rectangle2">
                 <div class="rectangle__label">Atmospheric Pressure Gauge</div>
                 <div class="gauge-minmax2st">
-                    <span class="min">0 kPa</span>
-                    <span class="max" style="margin-right: -10px;">1500 Kpa</span>
+                    <span class="min">0 hPa</span>
+                    <span class="max" style="margin-right: -10px;">1500 hPa</span>
                 </div>
                 <div class="rectangle__box"><span id="PressureValue"></span> </div>
                 <div class="gauge-bar">
