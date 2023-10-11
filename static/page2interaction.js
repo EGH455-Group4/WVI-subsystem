@@ -8,9 +8,14 @@ function updatedata() {
 
             targetDetection = data.target_detection;
 
-            var imageElement = document.getElementById("target-detection-image");
-            if (imageElement.src !== targetDetection.location) {
-                imageElement.src = targetDetection.location;
+            detections = targetDetection.detections;
+
+            var noDetections = detections.aruco == null && detections.gauge == null && detections.valve == null
+
+            document.getElementById("live-image").src = targetDetection.location
+
+            if (!noDetections) {
+                document.getElementById("target-image").src = targetDetection.location;
 
                 var imageUpdatedEvent = new Event("imageUpdated");
                 document.dispatchEvent(imageUpdatedEvent);
@@ -18,52 +23,7 @@ function updatedata() {
                 imageUpdated = true;
             }
 
-            detections = targetDetection.detections;
-
-            if (detections.aruco == null) {
-                document.getElementById("arucoIDS").textContent = `Found IDs: None`;
-
-                document.getElementById("xValue").textContent = `x = N/A`;
-                document.getElementById("yValue").textContent = `y = N/A`;
-                document.getElementById("zValue").textContent = `z = N/A`;
-            } else {
-                var ids = [];
-                var totalX = 0;
-                var totalY = 0;
-                var totalZ = 0;
-
-                for (let i = 0; i < detections.aruco.length; i++) {
-                    ids.push(detections.aruco[i].aruco_id);
-
-                    totalX += detections.aruco[i].pose.x_pos;
-                    totalY += detections.aruco[i].pose.y_pos;
-                    totalZ += detections.aruco[i].pose.z_pos;
-                }
-
-                document.getElementById("arucoIDS").textContent = `Found IDs: ${ids.toString()}`;
-
-                document.getElementById("xValue").textContent = `x = ${(totalX/detections.aruco.length).toFixed(2)}`;
-                document.getElementById("yValue").textContent = `y = ${(totalY/detections.aruco.length).toFixed(2)}`;
-                document.getElementById("zValue").textContent = `z = ${(totalZ/detections.aruco.length).toFixed(2)}`;
-            }
-
-            if (detections.gauge == null) {
-                document.getElementById("pressureReading").textContent = `Pressure Reading = None`;
-            } else {
-                document.getElementById("pressureReading").textContent = `Pressure Reading = ${detections.gauge.value} ${detections.gauge.unit}`;
-            }
-
-            if (detections.valve == null) {
-                document.getElementById("valvePositions").textContent = `Valve Positions: None`;
-            } else {
-                var valves = [];
-
-                for (let i = 0; i < detections.valve.length; i++) {
-                    valves.push(detections.valve[i].status);
-                }
-
-                document.getElementById("valvePositions").textContent = `Valve Positions: ${valves.toString()}`;
-            }
+            updateInformation(detections, !noDetections)
 
             const currentTime = new Date();
             document.getElementById("lastUpdated").textContent =  currentTime.toLocaleTimeString();
@@ -79,7 +39,7 @@ function updatedata() {
 
 function checkScenarios(detections) {
     if (imageUpdated && detections.aruco == null && detections.gauge == null && detections.valve == null) {
-        playAudio("noDataAudio");
+        // playAudio("noDataAudio"); Can be uncommented if needed.
         logToConsole("No data available.");
     } else if (imageUpdated && detections.aruco != null && detections.gauge == null && detections.valve == null) {
         playAudio("arucoAudio");
@@ -114,9 +74,70 @@ function logToConsole(message) {
     console.log("Message:", message);
 }
 
-updatedata();
-setInterval(updatedata, 19000);
+function updateInformation(detections, includeTarget) {
+    if (detections.aruco == null) {
+        document.getElementById("live_arucoIDS").textContent = `Found IDs: None`;
+        document.getElementById("live_xValue").textContent = `x = N/A`;
+        document.getElementById("live_yValue").textContent = `y = N/A`;
+        document.getElementById("live_zValue").textContent = `z = N/A`;
+        if (includeTarget) {
+            document.getElementById("target_arucoIDS").textContent = `Found IDs: None`;
+            document.getElementById("target_xValue").textContent = `x = N/A`;
+            document.getElementById("target_yValue").textContent = `y = N/A`;
+            document.getElementById("target_zValue").textContent = `z = N/A`;
+        }
+    } else {
+        var ids = [];
+        var totalX = 0;
+        var totalY = 0;
+        var totalZ = 0;
+        for (let i = 0; i < detections.aruco.length; i++) {
+            ids.push(detections.aruco[i].aruco_id);
+            totalX += detections.aruco[i].pose.x_pos;
+            totalY += detections.aruco[i].pose.y_pos;
+            totalZ += detections.aruco[i].pose.z_pos;
+        }
+        document.getElementById("live_arucoIDS").textContent = `Found IDs: ${ids.toString()}`;
+        document.getElementById("live_xValue").textContent = `x = ${(totalX/detections.aruco.length).toFixed(2)}`;
+        document.getElementById("live_yValue").textContent = `y = ${(totalY/detections.aruco.length).toFixed(2)}`;
+        document.getElementById("live_zValue").textContent = `z = ${(totalZ/detections.aruco.length).toFixed(2)}`;
+        if (includeTarget) {
+            document.getElementById("target_arucoIDS").textContent = `Found IDs: ${ids.toString()}`;
+            document.getElementById("target_xValue").textContent = `x = ${(totalX/detections.aruco.length).toFixed(2)}`;
+            document.getElementById("target_yValue").textContent = `y = ${(totalY/detections.aruco.length).toFixed(2)}`;
+            document.getElementById("target_zValue").textContent = `z = ${(totalZ/detections.aruco.length).toFixed(2)}`;
+        }
+    }
 
-document.addEventListener("imageUpdated", () => {
-    updatedata();
-});
+    if (detections.gauge == null) {
+        document.getElementById("live_pressureReading").textContent = `Pressure Reading = None`;
+        if (includeTarget) {
+            document.getElementById("target_pressureReading").textContent = `Pressure Reading = None`;
+        }
+    } else {
+        document.getElementById("live_pressureReading").textContent = `Pressure Reading = ${detections.gauge.value} ${detections.gauge.unit}`;
+        if (includeTarget) {
+            document.getElementById("target_pressureReading").textContent = `Pressure Reading = ${detections.gauge.value} ${detections.gauge.unit}`;
+        }
+    }
+
+    if (detections.valve == null) {
+        document.getElementById("live_valvePositions").textContent = `Valve Positions: None`;
+        if (includeTarget) {
+            document.getElementById("target_valvePositions").textContent = `Valve Positions: None`;
+        }
+    } else {
+        var valves = []
+        for (let i = 0; i < detections.valve.length; i++) {
+            valves.push(detections.valve[i].status);
+        }
+
+        document.getElementById("live_valvePositions").textContent = `Valve Positions: ${valves.toString()}`;
+
+        if (includeTarget) {
+            document.getElementById("target_valvePositions").textContent = `Valve Positions: ${valves.toString()}`;
+        }
+    }
+}
+
+setInterval(updatedata, 1000);
