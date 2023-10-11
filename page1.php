@@ -71,7 +71,7 @@
                 <div class="rectangle__label">Light Level Sensor</div>
                 <div class="gauge-minmax1st">
                     <span class="min">0 Lux </span>
-                    <span class="max">100 Lux</span>
+                    <span class="max">500 Lux</span>
                 </div>
                 <div class="rectangle__box"><span id="LightValue"></span> </div>
                 <div class="gauge-bar">
@@ -88,8 +88,28 @@
                 <div class="rectangle__box"><span id="nh3Value"></span> </div>
                 <div class="rectangle__box"><span id="oxidising_gasesValue"></span> </div>
                 <div class="rectangle__box"><span id="reducing_gasesValue"></span> </div>
-                <div class="gauge-bar">
+                <div class="gauge-bar" id="GasGaugeBar">
                     <div class="gauge-fill" id="GasGauge"></div>
+                </div>
+                <div class="gauge-minmax3rd">
+                    <span class="min">0 ppm</span>
+                    <span class="max">5 ppm</span>
+                </div>
+                <div class="rectangle__box">
+                    <span id="oxidising_gasesValue"></span>
+                </div>
+                <div class="gauge-bar">
+                    <div class="gauge-fill" id="OxidisingGauge"></div>
+                </div>
+               <div class="gauge-minmax4th">
+                    <span class="min">0 ppm</span>
+                    <span class="max">5 ppm</span>
+                </div>
+                <div class="rectangle__box">
+                    <span id="reducing_gasesValue"></span>
+                </div>
+                <div class="gauge-bar" id="RGasGauge"> 
+                    <div class="gauge-fill" id="ReducingGauge"></div>
                 </div>
             </div>
 
@@ -123,6 +143,33 @@
             <span id="lastUpdated"></span>
         </div>
 
+
+                <div class="graph-container">
+            <div class="graph">
+                <h2>Temperature</h2>
+                <canvas id="temperatureChart" width="400" height="400"></canvas>
+            </div>
+            <div class="graph">
+                <h2>Pressure</h2>
+                <canvas id="pressureChart" width="400" height="400"></canvas>
+            </div>
+            <div class="graph">
+                <h2>Light</h2>
+                <canvas id="lightChart" width="400" height="400"></canvas>
+            </div>
+            <div class="graph">
+                <h2>Gas Level</h2>
+                <canvas id="gasChart" width="400" height="400"></canvas>
+            </div>
+            <div class="graph">
+                <h2>Humidity</h2>
+                <canvas id="humidityChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="./static/page1interaction.js"></script>
 </body>
 </html>

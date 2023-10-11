@@ -1,3 +1,5 @@
+var imageUpdated = false;
+
 function updatedata() {
     fetch('getTargetDetection.php')
         .then(response => response.json())
@@ -6,7 +8,15 @@ function updatedata() {
 
             targetDetection = data.target_detection;
 
-            document.getElementById("target-detection-image").src = targetDetection.location;
+            var imageElement = document.getElementById("target-detection-image");
+            if (imageElement.src !== targetDetection.location) {
+                imageElement.src = targetDetection.location;
+
+                var imageUpdatedEvent = new Event("imageUpdated");
+                document.dispatchEvent(imageUpdatedEvent);
+
+                imageUpdated = true;
+            }
 
             detections = targetDetection.detections;
 
@@ -25,9 +35,9 @@ function updatedata() {
                 for (let i = 0; i < detections.aruco.length; i++) {
                     ids.push(detections.aruco[i].aruco_id);
 
-                    totalX += detections.aruco[i].pose.x_pos
-                    totalY += detections.aruco[i].pose.y_pos
-                    totalZ += detections.aruco[i].pose.z_pos
+                    totalX += detections.aruco[i].pose.x_pos;
+                    totalY += detections.aruco[i].pose.y_pos;
+                    totalZ += detections.aruco[i].pose.z_pos;
                 }
 
                 document.getElementById("arucoIDS").textContent = `Found IDs: ${ids.toString()}`;
@@ -54,11 +64,59 @@ function updatedata() {
 
                 document.getElementById("valvePositions").textContent = `Valve Positions: ${valves.toString()}`;
             }
+
+            const currentTime = new Date();
+            document.getElementById("lastUpdated").textContent =  currentTime.toLocaleTimeString();
+
+            checkScenarios(detections);
+
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
 }
 
+
+function checkScenarios(detections) {
+    if (imageUpdated && detections.aruco == null && detections.gauge == null && detections.valve == null) {
+        playAudio("noDataAudio");
+        logToConsole("No data available.");
+    } else if (imageUpdated && detections.aruco != null && detections.gauge == null && detections.valve == null) {
+        playAudio("arucoAudio");
+        logToConsole("ARUCO ID detected.");
+    } else if (imageUpdated && detections.aruco == null && detections.gauge != null && detections.valve == null) {
+        playAudio("pressureAudio");
+        logToConsole("Pressure Gauge Reading detected.");
+    } else if (imageUpdated && detections.aruco == null && detections.gauge == null && detections.valve != null) {
+        playAudio("valveAudio");
+        logToConsole("Valve Position detected.");
+    } else if (imageUpdated && detections.aruco != null && detections.gauge != null && detections.valve == null) {
+        playAudio("arucoPressureAudio");
+        logToConsole("ARUCO ID and Pressure Gauge detected.");
+    } else if (imageUpdated && detections.aruco != null && detections.gauge == null && detections.valve != null) {
+        playAudio("arucoValveAudio");
+        logToConsole("ARUCO ID and Valve Position detected.");
+    } else if (imageUpdated && detections.aruco == null && detections.gauge != null && detections.valve != null) {
+        playAudio("pressureValveAudio");
+        logToConsole("Pressure Gauge Reading and Valve Position detected.");
+    } else if (imageUpdated && detections.aruco != null && detections.gauge != null && detections.valve != null) {
+        playAudio("allAudio");
+        logToConsole("ARUCO ID, Pressure Gauge Reading, and Valve Position detected.");
+    }
+}
+
+function playAudio(audioId) {
+    const audio = document.getElementById(audioId);
+    audio.play();
+}
+
+function logToConsole(message) {
+    console.log("Message:", message);
+}
+
 updatedata();
-setInterval(updatedata, 1000);
+setInterval(updatedata, 19000);
+
+document.addEventListener("imageUpdated", () => {
+    updatedata();
+});
