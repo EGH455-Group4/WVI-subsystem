@@ -11,11 +11,17 @@
         <audio id="noDataAudio" src="./afx/sound1.mp3"></audio>
         <audio id="arucoAudio" src="./afx/sound2.mp3"></audio>
         <audio id="pressureAudio" src="./afx/sound3.mp3"></audio>
-        <audio id="valveAudio" src="./afx/sound4.mp3"></audio>
-        <audio id="arucoPressureAudio" src="./afx/sound5.mp3"></audio>
-        <audio id="arucoValveAudio" src="./afx/sound6.mp3"></audio>
-        <audio id="pressureValveAudio" src="./afx/sound7.mp3"></audio>
-        <audio id="allAudio" src="./afx/sound8.mp3"></audio>
+        <audio id="valveClosedAudio" src="./afx/sound4.mp3"></audio>
+        <audio id="valveOpenAudio" src="./afx/sound5.mp3"></audio>
+        
+
+        <audio id="arucoPressureAudio" src="./afx/sound6.mp3"></audio>
+        <audio id="arucoValveClosedAudio" src="./afx/sound7.mp3"></audio>
+        <audio id="arucoValveOpenAudio" src="./afx/sound8.mp3"></audio>
+        <audio id="pressureValveClosedAudio" src="./afx/sound9.mp3"></audio>
+        <audio id="pressureValveOpenAudio" src="./afx/sound10.mp3"></audio>
+        <audio id="allClosedAudio" src="./afx/sound11.mp3"></audio>
+        <audio id="allOpenAudio" src="./afx/sound12.mp3"></audio>
 
     <nav class="navbar">
         <div class="navbar__container">
