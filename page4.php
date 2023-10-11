@@ -57,6 +57,10 @@
     </div>
     <br />
     <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <div>
         <button class="navbar__item" onclick="clearData()">Clear application data</button>
     </div>

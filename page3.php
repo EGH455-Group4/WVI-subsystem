@@ -66,7 +66,7 @@
     </div>
     
     <div class="update-time">
-        Last Updated: <span id="lastUpdated">Never</span>
+        <span id="lastUpdated">Never</span>
     </div>
     <script src="./static/page3interaction.js"></script>
     
