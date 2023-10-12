@@ -56,6 +56,14 @@ function refreshLCDScreen() {
     .then(response => console.log(JSON.stringify(response)))
 }
 
+function clearImagesFolder() {
+    var ip = document.getElementById("pi_address").value;
+
+    fetch(`http://${ip}:8060/clear`, {method: 'POST'})
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+}
+
 function clearData() {
     fetch('clearData.php');
 }
