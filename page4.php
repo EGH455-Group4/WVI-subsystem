@@ -56,6 +56,10 @@
         <button class="navbar__item" onclick="startSampling()">Start sampling process</button>
     </div>
     <br />
+    <div>
+        <button class="navbar__item" onclick="refreshLCDScreen()">Refresh LCD screen</button>
+    </div>
+    <br />
     <br />
     <br />
     <br />

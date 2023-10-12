@@ -1,7 +1,7 @@
 function setLCDScreenIP() {
     var ip = document.getElementById("pi_address").value;
 
-    fetch(`http://${ip}:8050/lcd-screen `, {
+    fetch(`http://${ip}:8050/lcd-screen`, {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -15,7 +15,7 @@ function setLCDScreenIP() {
 function setLCDScreenTemperature() {
     var ip = document.getElementById("pi_address").value;
 
-    fetch(`http://${ip}:8050/lcd-screen `, {
+    fetch(`http://${ip}:8050/lcd-screen`, {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -29,7 +29,7 @@ function setLCDScreenTemperature() {
 function setLCDScreenTarget() {
     var ip = document.getElementById("pi_address").value;
 
-    fetch(`http://${ip}:8050/lcd-screen `, {
+    fetch(`http://${ip}:8050/lcd-screen`, {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -44,6 +44,14 @@ function startSampling() {
     var ip = document.getElementById("pi_address").value;
 
     fetch(`http://${ip}:8070/sample`, {method: 'POST'})
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+}
+
+function refreshLCDScreen() {
+    var ip = document.getElementById("pi_address").value;
+
+    fetch(`http://${ip}:8050/refresh-lcd-screen`, {method: 'POST'})
     .then(response => response.json())
     .then(response => console.log(JSON.stringify(response)))
 }
