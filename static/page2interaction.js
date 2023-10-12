@@ -142,14 +142,35 @@ function updateInformation(detections, includeTarget) {
     }
 
     if (detections.gauge == null) {
+        document.getElementById("live_pressureGauge").textContent = `Detected Gauge: No`;
+
         document.getElementById("live_pressureReading").textContent = `Pressure Reading = None`;
+
         if (includeTarget) {
+            document.getElementById("target_pressureGauge").textContent = `Detected Gauge: No`;
+
             document.getElementById("target_pressureReading").textContent = `Pressure Reading = None`;
         }
     } else {
-        document.getElementById("live_pressureReading").textContent = `Pressure Reading = ${detections.gauge.value} ${detections.gauge.unit}`;
+        document.getElementById("live_pressureGauge").textContent = `Detected Gauge: Yes`;
+
         if (includeTarget) {
-            document.getElementById("target_pressureReading").textContent = `Pressure Reading = ${detections.gauge.value} ${detections.gauge.unit}`;
+            document.getElementById("target_pressureGauge").textContent = `Detected Gauge: Yes`;
+        }
+
+        if (detections.gauge.reading == null) {
+            document.getElementById("live_pressureReading").textContent = `Pressure Reading = None`;
+
+            if (includeTarget) {
+                document.getElementById("target_pressureReading").textContent = `Pressure Reading = None`;
+            }
+
+        } else {
+            document.getElementById("live_pressureReading").textContent = `Pressure Reading = ${detections.gauge.reading.value} ${detections.gauge.reading.unit}`;
+
+            if (includeTarget) {
+                document.getElementById("target_pressureReading").textContent = `Pressure Reading = ${detections.gauge.reading.value} ${detections.gauge.reading.unit}`;
+            }
         }
     }
 
