@@ -60,10 +60,9 @@
         <button class="navbar__item" onclick="refreshLCDScreen()">Refresh LCD screen</button>
     </div>
     <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    <div>
+        <button class="navbar__item" onclick="clearImagesFolder()">Clear Images folder</button>
+    </div>
     <br />
     <div>
         <button class="navbar__item" onclick="clearData()">Clear application data</button>
