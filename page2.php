@@ -83,6 +83,7 @@
                 <div class="rectangle__label">Pressure Gauge Reading</div>
             </div>
             <div class="rectangle__half">
+                <div class="rectangle__box" id="live_pressureGauge">Detected Gauge: No</div>
                 <div class="rectangle__box" id="live_pressureReading">Pressure Reading = None</div>
             </div>
 
@@ -126,6 +127,7 @@
                 <div class="rectangle__label">Pressure Gauge Reading</div>
             </div>
             <div class="rectangle__half">
+                <div class="rectangle__box" id="target_pressureGauge">Detected Gauge: No</div>
                 <div class="rectangle__box" id="target_pressureReading">Pressure Reading = None</div>
             </div>
 
