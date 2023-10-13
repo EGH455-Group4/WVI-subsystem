@@ -204,9 +204,9 @@ function updateSensorData() {
             }
 
             if (data.air_quality.sensors.hazardous_gases) {
-                document.getElementById("nh3Value").textContent = `NH3 Level: ${data.air_quality.sensors.hazardous_gases.nh3.value} `;
-                document.getElementById("oxidising_gasesValue").textContent = `Oxidising Gases Level: ${data.air_quality.sensors.hazardous_gases.oxidising_gases.value} `;
-                document.getElementById("reducing_gasesValue").textContent = `Reducing Gases Level: ${data.air_quality.sensors.hazardous_gases.reducing_gases.value} `;
+                document.getElementById("nh3Value").textContent = `NH3 Level: ${data.air_quality.sensors.hazardous_gases.nh3.value} ${data.air_quality.sensors.hazardous_gases.nh3.unit} `;
+                document.getElementById("oxidising_gasesValue").textContent = `Oxidising Gases Level: ${data.air_quality.sensors.hazardous_gases.oxidising_gases.value} ${data.air_quality.sensors.hazardous_gases.oxidising_gases.unit} `;
+                document.getElementById("reducing_gasesValue").textContent = `Reducing Gases Level: ${data.air_quality.sensors.hazardous_gases.reducing_gases.value} ${data.air_quality.sensors.hazardous_gases.reducing_gases.unit} `;
 
                 updateGauge("GasGauge", data.air_quality.sensors.hazardous_gases.nh3.value, 0, 100);
                 updateGauge("OxidisingGauge", data.air_quality.sensors.hazardous_gases.oxidising_gases.value, 0,5);
