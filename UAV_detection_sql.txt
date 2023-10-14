@@ -6,3 +6,7 @@ CREATE TABLE `UAV_detection` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 # Will need to update id to auto increment through phpmyadmin.
+
+# Also, change the time_zone.
+
+SET GLOBAL time_zone = "+10:00";
