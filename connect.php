@@ -9,10 +9,15 @@ try {
     $result = '';
 
     while ($row = $stmt->fetch_assoc()) {
+        $epoch = $row['timestamp'];
+        $dt = new DateTime("@$epoch");
+
+        $dt->setTimezone(new DateTimeZone('Australia/Brisbane'));
+
         $result .= "<tr><td>";
         $result .= $row['id'];
         $result .= "</td><td>";
-        $result .= $row['timestamp'];
+        $result .= $dt->format('Y-m-d H:i:s');
         $result .= "</td><td>";
         $result .= $row['type'];
         $result .= "</td><td>";
