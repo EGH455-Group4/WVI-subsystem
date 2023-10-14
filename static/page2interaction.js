@@ -41,59 +41,27 @@ function checkScenarios(detections) {
     if (imageUpdated && detections.aruco == null && detections.gauge == null && detections.valve == null) {
         // playAudio("noDataAudio"); Can be uncommented if needed.
         logToConsole("No data available.");
-
     } else if (imageUpdated && detections.aruco != null && detections.gauge == null && detections.valve == null) {
         playAudio("arucoAudio");
         logToConsole("ARUCO ID detected.");
-
     } else if (imageUpdated && detections.aruco == null && detections.gauge != null && detections.valve == null) {
         playAudio("pressureAudio");
         logToConsole("Pressure Gauge Reading detected.");
-
     } else if (imageUpdated && detections.aruco == null && detections.gauge == null && detections.valve != null) {
-        const valveStatus = detections.valve[0].status;
-        if (valveStatus === 'closed') {
-            playAudio("valveClosedAudio");
-            logToConsole("Valve Position detected: Closed");
-        } else if (valveStatus === 'open') {
-            playAudio("valveOpenAudio");
-            logToConsole("Valve Position detected: Open");
-        }
-
+        playAudio("valveAudio");
+        logToConsole("Valve Position detected.");
     } else if (imageUpdated && detections.aruco != null && detections.gauge != null && detections.valve == null) {
         playAudio("arucoPressureAudio");
         logToConsole("ARUCO ID and Pressure Gauge detected.");
-        
     } else if (imageUpdated && detections.aruco != null && detections.gauge == null && detections.valve != null) {
-        const valveStatus = detections.valve[0].status;
-        if (valveStatus === 'closed') {
-            playAudio("arucoValveClosedAudio");
-            logToConsole("ARUCO ID and Valve Position detected: Closed");
-        } else if (valveStatus === 'open') {
-            playAudio("arucoValveOpenAudio");
-            logToConsole("ARUCO ID and Valve Position detected: Open");
-        }
-
+        playAudio("arucoValveAudio");
+        logToConsole("ARUCO ID and Valve Position detected.");
     } else if (imageUpdated && detections.aruco == null && detections.gauge != null && detections.valve != null) {
-        const valveStatus = detections.valve[0].status; 
-        if (valveStatus === 'closed') {
-            playAudio("pressureValveClosedAudio");
-            logToConsole("Pressure Gauge Reading and Valve Position detected: Closed");
-
-        } else if (valveStatus === 'open') {
-            playAudio("pressureValveOpenAudio");
-            logToConsole("Pressure Gauge Reading and Valve Position detected: Open");
-        }
-
+        playAudio("pressureValveAudio");
+        logToConsole("Pressure Gauge Reading and Valve Position detected.");
     } else if (imageUpdated && detections.aruco != null && detections.gauge != null && detections.valve != null) {
-        const valveStatus = detections.valve[0].status;
-        if (valveStatus === 'closed') {
-            playAudio("allClosedAudio");
-            logToConsole("ARUCO ID, Pressure Gauge Reading, and Valve Position detected: Closed");
-        } else if (valveStatus === 'open') {
-            playAudio("allOpenAudio");
-            logToConsole("ARUCO ID, Pressure Gauge Reading, and Valve Position detected: Open");
-        }
+        playAudio("allAudio");
+        logToConsole("ARUCO ID, Pressure Gauge Reading, and Valve Position detected.");
     }
 }
 
@@ -166,8 +134,8 @@ function updateInformation(detections, includeTarget) {
             }
 
         } else {
-            document.getElementById("live_pressureReading").textContent = `Pressure Reading = ${detections.gauge.reading.value} ${detections.gauge.reading.unit}`;
 
+            document.getElementById("live_pressureReading").textContent = `Pressure Reading = ${detections.gauge.reading.value} ${detections.gauge.reading.unit}`;
             if (includeTarget) {
                 document.getElementById("target_pressureReading").textContent = `Pressure Reading = ${detections.gauge.reading.value} ${detections.gauge.reading.unit}`;
             }
@@ -193,5 +161,4 @@ function updateInformation(detections, includeTarget) {
     }
 }
 
-
-setInterval(updatedata, 9000);
+setInterval(updatedata, 1000);

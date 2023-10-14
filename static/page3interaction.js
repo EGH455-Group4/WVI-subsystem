@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const startTimestamp = startTimestampInput.value.trim();
         const endTimestamp = endTimestampInput.value.trim();
         const url = `search.php?startTimestamp=${startTimestamp}&endTimestamp=${endTimestamp}`;
-        
+
         fetchAndUpdateTable(url);
     });
 

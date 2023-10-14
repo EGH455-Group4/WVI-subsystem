@@ -34,7 +34,7 @@
     <div class="page-title">
         <h1>Log Data</h1>
     </div>
-    
+
     <div class="rectangle rec2">
     <div class="rectangle__half">
         <button id="updateButton" class="updateButton">Update</button>            <div class="table-search-container">
@@ -64,11 +64,11 @@
         <input type="text" id="endTimestamp" placeholder="End Timestamp">
         <button id="displayButton">Display</button>
     </div>
-    
+
     <div class="update-time">
         <span id="lastUpdated">Never</span>
     </div>
     <script src="./static/page3interaction.js"></script>
-    
+
 </body>
 </html>

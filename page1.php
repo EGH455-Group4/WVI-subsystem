@@ -34,7 +34,7 @@
     <div class="page-title">
         <h1>Real-Time Flight Information</h1>
     </div>
-    
+
     <div class="update-time">
         Last Updated: <span id="lastUpdated">Never</span>
     </div>
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="right-rectangles">
             <div class="rectangle rectangle4">
                 <div class="rectangle__label">Light Level Sensor</div>
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-                    
+
         <label for="dataFilter" style="display: none;">Select Data Type:</label>
         <select id="dataFilter" style="display: none;">
             <option value="Temperature">Temperature</option>
@@ -166,7 +166,6 @@
                 <canvas id="humidityChart" width="400" height="400"></canvas>
             </div>
         </div>
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
