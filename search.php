@@ -8,11 +8,14 @@ $endTimestamp = isset($_GET['endTimestamp']) ? $_GET['endTimestamp'] : '';
 $startDateTime = new DateTime($startTimestamp, new DateTimeZone('Australia/Brisbane'));
 $endDateTime = new DateTime($endTimestamp, new DateTimeZone('Australia/Brisbane'));
 
+$startEpoch = date_format($startDateTime, 'U');
+$endEpoch = date_format($endDateTime, 'U');
+
 try {
     $query = "SELECT id, timestamp, type, data FROM UAV_detection WHERE timestamp >= ? AND timestamp <= ?";
     $stmt = $mysqli->prepare($query);
 
-    $stmt->bind_param("ss", date_format($startDateTime, 'U'), date_format($endDateTime, 'U'));
+    $stmt->bind_param("ss", $startEpoch, $endEpoch);
 
     $stmt->execute();
 
