@@ -35,6 +35,7 @@
     <div class="page-title">
         <h1>Control centre</h1>
     </div>
+    <br />
     <div>
         Pi Address
         <input type="text" id="pi_address" name="Pi Address" />
