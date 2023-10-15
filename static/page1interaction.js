@@ -242,4 +242,4 @@ function updateGauge(gaugeId, value, min, max) {
 }
 
 updateSensorData();
-setInterval(updateSensorData, 2000);
+setInterval(updateSensorData, 3000);

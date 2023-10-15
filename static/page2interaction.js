@@ -194,4 +194,4 @@ function updateInformation(detections, includeTarget) {
 }
 
 
-setInterval(updatedata, 1000);
+setInterval(updatedata, 3000);
