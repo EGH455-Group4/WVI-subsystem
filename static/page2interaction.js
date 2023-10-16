@@ -14,7 +14,9 @@ function updatedata() {
 
             document.getElementById("live-image").src = targetDetection.location
 
-            if (!noDetections) {
+            imageUpdated = false;
+
+            if (!noDetections && document.getElementById("target-image").src != targetDetection.location) {
                 document.getElementById("target-image").src = targetDetection.location;
 
                 var imageUpdatedEvent = new Event("imageUpdated");
@@ -28,7 +30,9 @@ function updatedata() {
             const currentTime = new Date();
             document.getElementById("lastUpdated").textContent =  currentTime.toLocaleTimeString();
 
-            checkScenarios(detections);
+            if (imageUpdated) {
+                checkScenarios(detections);
+            }
 
         })
         .catch(error => {
