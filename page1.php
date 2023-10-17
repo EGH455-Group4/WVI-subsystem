@@ -104,7 +104,7 @@
                 </div>
                <div class="gauge-minmax4th">
                     <span class="min">0 ppm</span>
-                    <span class="max">5 ppm</span>
+                    <span class="max">10 ppm</span>
                 </div>
                 <div class="rectangle__box">
                     <span id="reducing_gasesValue"></span>
